@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  description: "This is a sample application to obtain OHLC data for certain pre-configured financial instruments. It automatically fetches and stores the OHLC information periodically. This can then be queried using the endpoints below"
+  version: "1.0.0"
+  title: "OHLC Financial Data"
+  contact:
+    email: "v.onyenezido@gmail.ccom"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/api/v1"
+tags:
+- name: "ohlc"
+  description: "Open, High, Low, Close stock price and trade volume"
+schemes:
+- "http"
+paths:
+  /ohlc/{symbol}:
+    get:
+      tags:
+      - "ohlc"
+      summary: "Get OHLC data and trade volume"
+      description: "Returns OHLC data for a specified financial instrument and time range"
+      operationId: "api_operations.get_ticker_data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "symbol"
+        in: "path"
+        description: "Symbol of financial instrument eg. AAPL"
+        required: true
+        type: "string"
+      - name: "start_time"
+        in: "query"
+        description: "Start time"
+        required: true
+        type: "string"
+        format: "date-time"
+      - name: "end_time"
+        in: "query"
+        description: "End time"
+        required: true
+        type: "string"
+        format: "date-time"
+      responses:
+        "200":
+          description: "Successfully retreived OHLC data"
+        "400":
+          description: "Invalid symbol provided"
+        "404":
+          description: "OHLC data for symbol not found"
