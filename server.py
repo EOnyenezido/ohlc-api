@@ -32,4 +32,4 @@ app.logger.info('Background scheduler for get finance data job started successfu
 atexit.register(lambda: scheduler.shutdown())
 
 if __name__ == "__main__":
-    connex_app.run(debug=True if connex_app.app.env == 'development' else False)
+    connex_app.run(debug=True if connex_app.app.env == 'development' else False, use_reloader=False)
