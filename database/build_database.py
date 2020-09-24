@@ -11,3 +11,5 @@ def build_database():
         db.create_all()
 
         app.logger.info('Database built successfully')
+    else:
+        app.logger.info('Database already exists. Continuing.')
